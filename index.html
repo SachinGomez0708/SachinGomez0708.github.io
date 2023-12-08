@@ -1,0 +1,33 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music AI Web App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Music AI Web App</h1>
+    <form id="signupForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="genre">Select Your Favorite Genre:</label>
+      <select id="genre" name="genre" required>
+        <option value="pop">Pop</option>
+        <option value="rock">Rock</option>
+        <option value="jazz">Jazz</option>
+        <!-- Add more genres as needed -->
+      </select>
+
+      <button type="button" onclick="generateMusic()">Generate Music</button>
+    </form>
+
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
