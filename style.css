@@ -1,0 +1,23 @@
+/* style.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: lavender;
+}
+
+.container {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
