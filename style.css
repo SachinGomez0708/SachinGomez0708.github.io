@@ -1,61 +1,33 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
 }
 
-#sudoku-container {
-  text-align: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.game-container {
+    text-align: center;
 }
 
-h1 {
-  color: #333;
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    margin-top: 20px;
 }
 
-#sudoku-board {
-  display: grid;
-  grid-template-columns: repeat(9, 40px);
-  grid-template-rows: repeat(9, 40px);
-  gap: 1px;
-  border: 1px solid #000;
-  margin: 20px auto;
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #333;
+    font-size: 2em;
+    cursor: pointer;
 }
 
-.sudoku-cell {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
-}
-
-.initial-cell {
-  background-color: #eee;
-}
-
-button {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #45a049;
+.result {
+    margin-top: 20px;
+    font-size: 1.5em;
 }
