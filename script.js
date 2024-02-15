@@ -1,61 +1,32 @@
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const boardContainer = document.getElementById("sudoku-board");
 
-#sudoku-container {
-  text-align: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  function createSudokuBoard() {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        const cell = document.createElement("div");
+        cell.classList.add("sudoku-cell");
+        boardContainer.appendChild(cell);
+      }
+    }
+  }
 
-h1 {
-  color: #333;
-}
+  function generateRandomPuzzle() {
+    const cellsToFill = 20;
+    const cells = document.querySelectorAll(".sudoku-cell");
 
-#sudoku-board {
-  display: grid;
-  grid-template-columns: repeat(9, 40px);
-  grid-template-rows: repeat(9, 40px);
-  gap: 1px;
-  border: 1px solid #000;
-  margin: 20px auto;
-}
+    for (let i = 0; i < cellsToFill; i++) {
+      const randomIndex = Math.floor(Math.random() * 81);
+      cells[randomIndex].textContent = Math.floor(Math.random() * 9) + 1;
+      cells[randomIndex].classList.add("initial-cell");
+    }
+  }
 
-.sudoku-cell {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
-}
+  createSudokuBoard();
+  generateRandomPuzzle();
+});
 
-.initial-cell {
-  background-color: #eee;
-}
-
-button {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #45a049;
+function solveSudoku() {
+  // Implement your own Sudoku solving algorithm
+  alert("Sudoku solving logic will be implemented here.");
 }
