@@ -1,32 +1,56 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const boardContainer = document.getElementById("sudoku-board");
+document.addEventListener('DOMContentLoaded', () => {
+    const board = document.getElementById('board');
+    const result = document.getElementById('result');
+    let currentPlayer = 'X';
+    let gameBoard = ['', '', '', '', '', '', '', '', ''];
+    let gameActive = true;
 
-  function createSudokuBoard() {
+    // Create the Tic Tac Toe board
     for (let i = 0; i < 9; i++) {
-      for (let j = 0; j < 9; j++) {
-        const cell = document.createElement("div");
-        cell.classList.add("sudoku-cell");
-        boardContainer.appendChild(cell);
-      }
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.setAttribute('data-index', i);
+        cell.addEventListener('click', () => handleCellClick(i));
+        board.appendChild(cell);
     }
-  }
 
-  function generateRandomPuzzle() {
-    const cellsToFill = 20;
-    const cells = document.querySelectorAll(".sudoku-cell");
+    // Handle cell click
+    const handleCellClick = (index) => {
+        if (gameBoard[index] === '' && gameActive) {
+            gameBoard[index] = currentPlayer;
+            renderBoard();
+            checkWinner();
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+    };
 
-    for (let i = 0; i < cellsToFill; i++) {
-      const randomIndex = Math.floor(Math.random() * 81);
-      cells[randomIndex].textContent = Math.floor(Math.random() * 9) + 1;
-      cells[randomIndex].classList.add("initial-cell");
-    }
-  }
+    // Render the Tic Tac Toe board
+    const renderBoard = () => {
+        board.childNodes.forEach((cell, index) => {
+            cell.textContent = gameBoard[index];
+        });
+    };
 
-  createSudokuBoard();
-  generateRandomPuzzle();
+    // Check for a winner or a tie
+    const checkWinner = () => {
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
+
+        for (const pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                result.textContent = `Player ${gameBoard[a]} wins!`;
+                gameActive = false;
+                return;
+            }
+        }
+
+        if (!gameBoard.includes('')) {
+            result.textContent = "It's a tie!";
+            gameActive = false;
+        }
+    };
 });
-
-function solveSudoku() {
-  // Implement your own Sudoku solving algorithm
-  alert("Sudoku solving logic will be implemented here.");
-}
